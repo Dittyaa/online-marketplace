@@ -38,11 +38,11 @@ Aplikasi marketplace online yang mencakup versi **Web** dan **Mobile**, dengan b
              │   Axios + JWT      │
              ▼                    ▼
 ┌─────────────────────────────────────────────┐
-│              BACKEND API                    │
-│        Node.js + Express (Railway)          │
+│                  BACKEND API                │
+│               Node.js + Express             │
 │   /api/auth  │  /api/products  │  /api/users│
 └──────────────────────┬──────────────────────┘
-                       │ Mongoose
+                       │ 
                        ▼
 ┌─────────────────────────────────────────────┐
 │              DATABASE                       │
@@ -107,7 +107,7 @@ cd backend
 npm install
 cp .env.example .env
 # Edit .env: isi MONGO_URI dan JWT_SECRET
-node server.js
+node app.js
 ```
 
 ### 3. Frontend Web
@@ -132,14 +132,23 @@ npx expo start
 
 | Method | Endpoint | Akses | Keterangan |
 |--------|----------|-------|------------|
-| POST | `/api/auth/register` | Public | Registrasi user |
-| POST | `/api/auth/login` | Public | Login, dapat token |
-| GET | `/api/auth/me` | Private | Data user login |
-| GET | `/api/products` | Public | Semua produk |
-| GET | `/api/products/:id` | Public | Detail produk |
-| POST | `/api/products` | Private | Tambah produk |
-| PUT | `/api/products/:id` | Private | Edit produk |
-| DELETE | `/api/products/:id` | Private | Hapus produk |
+| PATCH | `/admin/balance` | Private | Top up balance user |
+| POST | `/register` | Public | Daftar user |
+| POST | `/login` | Public | Login, dapat token |
+| GET | `/users` | Private | Data semua user |
+| GET | `/users/:id` | Public | Profil user |
+| PUT | `/users/:id/edit` | Public | Edit data user |
+| DELETE | `/users/:id/delete` | Public | Hapus akun user |
+| GET | `/products` | Public | Daftar produk |
+| GET | `/products/:id` | Public | Detail produk |
+| PUT | `/products/:id/edit` | Private | Ubah data produk |
+| DELETE | `/products/:id/delete` | Private | Hapus produk |
+| GET | `/cart/:userId` | Public | Keranjang user |
+| POST | `/cart/:productId` | Public | Masukan produk ke keranjang |
+| PUT | `/cart/:cartId` | Public | Edit keranjang |
+| DELETE | `/cart/:cartId` | Public | Hapus produk dari keranjang |
+| POST | `/checkout` | Public | Checkout |
+| GET | `/history` | Public | Riwayat pesanan |
 
 ---
 
