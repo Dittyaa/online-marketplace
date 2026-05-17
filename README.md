@@ -158,7 +158,7 @@ npx expo start
 |-------|-----------|
 | Frontend Web | React.js, React Router v6, Axios, CSS Grid/Flexbox |
 | Backend | Node.js, Express.js, JWT, bcryptjs, Multer |
-| Database | MongoDB Atlas, Mongoose |
+| Database | MongoDB Atlas |
 | Mobile | React Native, Expo |
 | Deployment | Vercel (FE), Railway (BE), Expo (Mobile) |
 | Monitoring | Google Analytics 4 |
