@@ -1,0 +1,48 @@
+{
+  "expo": {
+    "name": "Online Marketplace",
+    "slug": "online-marketplace-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "marketplace",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.marketplace.mobile"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#6C63FF"
+      },
+      "package": "com.marketplace.mobile"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      "expo-image"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "apiUrl": "https://dummyjson.com",
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "b0f4e4b9-c41a-488b-ba7c-741f9a3bc278"
+      }
+    },
+    "owner": "callmefer",
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/b0f4e4b9-c41a-488b-ba7c-741f9a3bc278"
+    }
+  }
+}
