@@ -17,6 +17,19 @@ class ProductsController {
     try {
       const db = getDB()
       const { id } = req.params
+      const errors = []
+
+      if (!id) {
+        errors.push("Product ID is required")
+      }
+
+      if (!ObjectId.isValid(id)) {
+        errors.push("Invalid product ID")
+      }
+
+      if (errors.length > 0) {
+        return res.status(400).json({ errors })
+      }
 
       const product = await db.collection("products").findOne({
         _id: new ObjectId(id)
@@ -42,7 +55,7 @@ class ProductsController {
   static async addProduct(req, res) {
     try {
       const db = getDB()
-      const { name, description, price, stock } = req.body
+      const { name, description, price, stock, userId } = req.body
       const errors = []
 
       if (!name) {
@@ -93,6 +106,30 @@ class ProductsController {
         errors.push("Stock must be less than 4 digits")
       }
 
+      if (!userId) {
+        errors.push("User ID is required")
+      }
+
+      if (!ObjectId.isValid(userId)) {
+        errors.push("Invalid user ID")
+      }
+
+      if (errors.length > 0) {
+        return res.status(400).json({ errors })
+      }
+
+      const user = await db.collection("users").findOne({
+        _id: new ObjectId(userId)
+      })
+
+      if (!user) {
+        errors.push("User not found")
+      }
+
+      if (user && !user.isAdmin) {
+        errors.push("Only admins can add products")
+      }
+
       if (errors.length > 0) {
         return res.status(400).json({ errors })
       }
@@ -120,7 +157,7 @@ class ProductsController {
     try {
       const db = getDB()
       const { id } = req.params
-      const { name, description, price, stock } = req.body
+      const { name, description, price, stock, userId } = req.body
       const errors = []
 
       if (!name) {
@@ -163,6 +200,42 @@ class ProductsController {
         errors.push("Stock must be a positive number")
       }
 
+      if (price > 99999999) {
+        errors.push("Price must be less than 9 digits")
+      }
+      
+      if (stock > 999) {
+        errors.push("Stock must be less than 4 digits")
+      }
+
+      if (!ObjectId.isValid(id)) {
+        errors.push("Invalid product ID")
+      }
+
+      if (!userId) {
+        errors.push("User ID is required")
+      }
+
+      if (!ObjectId.isValid(userId)) {
+        errors.push("Invalid user ID")
+      }
+
+      if (errors.length > 0) {
+        return res.status(400).json({ errors })
+      }
+
+      const user = await db.collection("users").findOne({
+        _id: new ObjectId(userId)
+      })
+
+      if (!user) {
+        errors.push("User not found")
+      }
+
+      if (user && !user.isAdmin) {
+        errors.push("Only admins can edit products")
+      }
+
       if (errors.length > 0) {
         return res.status(400).json({ errors })
       }
@@ -200,35 +273,41 @@ class ProductsController {
   static async deleteProduct(req, res) {
     try {
       const db = getDB()
-
       const { id } = req.params
+      const { userId } = req.body
+      const errors = []
 
-      const result = await db.collection("products").deleteOne({_id: new ObjectId(id)})
-
-      if (result.deletedCount === 0) {
-        return res.status(404).json({
-          error: "Product not found"
-        })
+      if (!userId) {
+        errors.push("User ID is required")
       }
 
-      res.json({
-        message: "Product deleted successfully"
+      if (!ObjectId.isValid(id)) {
+        errors.push("Invalid product ID")
+      }
+
+      if (!ObjectId.isValid(userId)) {
+        errors.push("Invalid user ID")
+      }
+
+      if (errors.length > 0) {
+        return res.status(400).json({ errors })
+      }
+
+      const user = await db.collection("users").findOne({
+        _id: new ObjectId(userId)
       })
 
-    } catch (error) {
-      console.log(error)
+      if (!user) {
+        errors.push("User not found")
+      }
 
-      res.status(500).json({
-        error: "Internal server error"
-      })
-    }
-  }
+      if (user && !user.isAdmin) {
+        errors.push("Only admins can delete products")
+      }
 
-  static async deleteProduct(req, res) {
-    try {
-      const db = getDB()
-
-      const { id } = req.params
+      if (errors.length > 0) {
+        return res.status(400).json({ errors })
+      }
 
       const result = await db.collection("products").deleteOne({
         _id: new ObjectId(id)

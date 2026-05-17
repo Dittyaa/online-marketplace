@@ -17,6 +17,15 @@ class UsersController {
         try {
             const db = getDB()
             const { id } = req.params
+            const errors = []
+
+            if (!ObjectId.isValid(id)) {
+                errors.push("Invalid user ID")
+            }
+
+            if (errors.length > 0) {
+                return res.status(400).json({ errors })
+            }
 
             const user = await db.collection("users").findOne({_id: new ObjectId(id)})
 
@@ -83,7 +92,7 @@ class UsersController {
                 errors.push("Password must be at least 8 characters")
             }
 
-            if (phone.length < 9 || phone.length > 12) {
+            if (phone && (phone.length < 9 || phone.length > 12)) {
                 errors.push("Invalid phone number")
             }
 
@@ -107,6 +116,7 @@ class UsersController {
                 password,
                 phone,
                 isAdmin: false,
+                balance: 0,
                 createdAt: new Date(),
                 updatedAt: new Date()
             })
@@ -189,83 +199,90 @@ class UsersController {
             const {name, email, password, phone} = req.body
             const errors = []
 
-
-        if (!name) {
-            errors.push("Name is required")
-        }
-
-        if (!email) {
-            errors.push("Email is required")
-        }
-
-        if (!password) {
-            errors.push("Password is required")
-        }
-
-        if (!phone) {
-            errors.push("Phone is required")
-        }
-
-        if (name && typeof name !== "string") {
-            errors.push("Name must be a string")
-        }
-
-        if (email && typeof email !== "string") {
-            errors.push("Email must be a string")
-        }
-
-        if (password && typeof password !== "string") {
-            errors.push("Password must be a string")
-        }
-
-        if (phone && typeof phone !== "string") {
-            errors.push("Phone must be a string")
-        }
-
-        if (password && password.length < 6) {
-            errors.push("Password must be at least 6 characters")
-        }
-        
-        if (phone.length < 9 || phone.length > 12) {
-            errors.push("Invalid phone number")
-        }
-
-        const existingEmail = await db.collection("users").findOne({email, _id: { $ne: new ObjectId(id) } })
-        if (existingEmail) {
-            errors.push("Email already registered")
-        }
-
-        const existingPhone = await db.collection("users").findOne({phone, _id: { $ne: new ObjectId(id) }})
-        if (existingPhone) {
-            errors.push("Phone number already registered")
-        }
-
-        if (errors.length > 0) {
-            return res.status(400).json({ errors })
-        }
-
-        const result = await db.collection("users").updateOne({
-            _id: new ObjectId(id)
-        },
-        {
-            $set: {
-            name,
-            email,
-            password,
-            phone,
-            updatedAt: new Date()
+            if (!ObjectId.isValid(id)) {
+                errors.push("Invalid user ID")
             }
-        })
 
-        if (result.matchedCount === 0) {
-            return res.status(404).json({
-                error: "User not found"
+            if (!name) {
+                errors.push("Name is required")
+            }
+
+            if (!email) {
+                errors.push("Email is required")
+            }
+
+            if (!password) {
+                errors.push("Password is required")
+            }
+
+            if (!phone) {
+                errors.push("Phone is required")
+            }
+
+            if (name && typeof name !== "string") {
+                errors.push("Name must be a string")
+            }
+
+            if (email && typeof email !== "string") {
+                errors.push("Email must be a string")
+            }
+
+            if (password && typeof password !== "string") {
+                errors.push("Password must be a string")
+            }
+
+            if (phone && typeof phone !== "string") {
+                errors.push("Phone must be a string")
+            }
+
+            if (password && password.length < 8) {
+                errors.push("Password must be at least 8 characters")
+            }
+            
+            if (phone && (phone.length < 9 || phone.length > 12)) {
+                errors.push("Invalid phone number")
+            }
+
+            if (errors.length > 0) {
+                return res.status(400).json({ errors })
+            }
+
+            const existingEmail = await db.collection("users").findOne({email, _id: { $ne: new ObjectId(id) } })
+            if (existingEmail) {
+                errors.push("Email already registered")
+            }
+
+            const existingPhone = await db.collection("users").findOne({phone, _id: { $ne: new ObjectId(id) }})
+            if (existingPhone) {
+                errors.push("Phone number already registered")
+            }
+
+            if (errors.length > 0) {
+                return res.status(400).json({ errors })
+            }
+
+            const result = await db.collection("users").updateOne({
+                _id: new ObjectId(id)
+            },
+            {
+                $set: {
+                name,
+                email,
+                password,
+                phone,
+                updatedAt: new Date()
+                }
             })
-        }
 
-        res.json({
-            message: "User updated successfully"
-        })
+            if (result.matchedCount === 0) {
+                return res.status(404).json({
+                    error: "User not found"
+                })
+            }
+
+            res.json({
+                message: "User updated successfully"
+            })
         } catch (error) {
             console.log(error)
 
@@ -279,6 +296,15 @@ class UsersController {
         try {
             const db = getDB()
             const { id } = req.params
+            const errors = []
+
+            if (!ObjectId.isValid(id)) {
+                errors.push("Invalid user ID")
+            }
+
+            if (errors.length > 0) {
+                return res.status(400).json({ errors })
+            }
 
             const result = await db.collection("users").deleteOne({_id: new ObjectId(id)})
 
