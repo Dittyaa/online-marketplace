@@ -2,6 +2,39 @@
 
 React Native + Expo mobile app yang merupakan versi mobile dari **online-marketplace**.
 
+## Cara Menjalankan Lokal
+
+**Prasyarat:**
+- [Node.js](https://nodejs.org) versi 18 atau lebih baru
+- [Expo Go](https://expo.dev/go) terinstall di HP (Android / iOS)
+
+**Langkah-langkah:**
+
+```bash
+# 1. Clone repo (skip jika sudah)
+git clone https://github.com/Dittyaa/online-marketplace.git
+cd online-marketplace/mobile
+
+# 2. Install dependencies
+npm install
+
+# 3. Jalankan app
+npx expo start
+```
+
+Setelah terminal menampilkan QR code:
+- **Android** → buka Expo Go → tap "Scan QR Code"
+- **iOS** → buka Kamera → arahkan ke QR → tap notifikasi Expo Go
+
+> HP dan PC harus terhubung ke **WiFi yang sama**. Jika tidak bisa konek, tekan **`t`** di terminal untuk tunnel mode.
+
+**Akun demo:**
+
+| Field | Value |
+|-------|-------|
+| Username | `emilys` |
+| Password | `emilyspass` |
+
 ## Tech Stack
 
 | Layer | Library |
