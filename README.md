@@ -11,10 +11,10 @@ Aplikasi marketplace online yang mencakup versi **Web** dan **Mobile**, dengan b
 
 | Nama | Peran | Bobot |
 |------|-------|-------|
-| Mochammad Aditya Firmansyah | Full Frontend Web (React) | 20% |
-| Zhafran Abyaz | Full Backend (Node.js + Express + MongoDB) | 20% |
-| Vincent Ferio | Full Mobile App (React Native + Expo) | 20% |
-| Bintang Pramudya | Authentication + Integration + Deployment + Dokumentasi | 35% |
+| Mochammad Aditya Firmansyah | Full Frontend Web (React) | 25% |
+| Zhafran Abyaz | Full Backend (Node.js + Express + MongoDB) | 25% |
+| Vincent Ferio | Full Mobile App (React Native + Expo) | 25% |
+| Bintang Pramudya | Authentication + Integration + Deployment + Dokumentasi | 25% |
 
 ---
 
