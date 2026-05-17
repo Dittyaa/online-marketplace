@@ -25,7 +25,7 @@ Aplikasi marketplace online yang mencakup versi **Web** dan **Mobile**, dengan b
 | 🌐 Frontend Web | [online-marketplace-chi.vercel.app](https://online-marketplace-chi.vercel.app) |
 | ⚙️ Backend API | *(isi URL Railway/Render setelah deploy)* |
 | 📱 Mobile App | [online-marketplace-mobile1--0z3th9s4vh.expo.app](https://online-marketplace-mobile1--0z3th9s4vh.expo.app/) · <img src="https://qr.expo.dev/eas-update?slug=exp&projectId=b0f4e4b9-c41a-488b-ba7c-741f9a3bc278&groupId=79be0d58-c622-460e-9f3e-7ebd99b1cfdd&host=u.expo.dev" width="80" alt="QR Mobile" /> |
-
+| 📱 Mobile App Download (Android only) | [https://expo.dev/accounts/callmefer/projects/online-marketplace-mobile/builds/34425405-666f-4858-b717-b85654e796ec](https://expo.dev/accounts/callmefer/projects/online-marketplace-mobile/builds/34425405-666f-4858-b717-b85654e796ec) |
 ---
 
 ## 🧱 Arsitektur Sistem
