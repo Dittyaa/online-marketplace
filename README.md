@@ -24,7 +24,7 @@ Aplikasi marketplace online yang mencakup versi **Web** dan **Mobile**, dengan b
 |----------|-----|
 | 🌐 Frontend Web | [online-marketplace-chi.vercel.app](https://online-marketplace-chi.vercel.app) |
 | ⚙️ Backend API | *(isi URL Railway/Render setelah deploy)* |
-| 📱 Mobile App | *(isi QR Code Expo setelah deploy)* |
+| 📱 Mobile App | [online-marketplace-mobile1--0z3th9s4vh.expo.app](https://online-marketplace-mobile1--0z3th9s4vh.expo.app/) · <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://online-marketplace-mobile1--0z3th9s4vh.expo.app/" width="80" alt="QR Mobile" /> |
 
 ---
 
