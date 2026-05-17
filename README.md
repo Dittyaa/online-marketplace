@@ -40,7 +40,7 @@ Aplikasi marketplace online yang mencakup versi **Web** dan **Mobile**, dengan b
 ┌─────────────────────────────────────────────┐
 │                  BACKEND API                │
 │               Node.js + Express             │
-│   /api/auth  │  /api/products  │  /api/users│
+│   /login    │   /products     │    /users   │
 └──────────────────────┬──────────────────────┘
                        │ 
                        ▼
